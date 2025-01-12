@@ -36,13 +36,13 @@ spec:
       containers:
       - name:  api-gateway-container
         image: ghcr.io/jadonharsh109/istio-microservice-deployment-api:latest
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
         livenessProbe:
           tcpSocket:
             port: 8000
@@ -62,7 +62,6 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort:  8000
-          name:  api-gateway-port
       restartPolicy: Always
 
 ---
@@ -77,6 +76,6 @@ spec:
   ports:
   - protocol: TCP
     port: 8000
-    targetPort: api-gateway-port
+    targetPort: 8000
   selector:
     app: api-gateway

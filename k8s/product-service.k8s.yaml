@@ -28,13 +28,13 @@ spec:
       containers:
       - name:  product-service-container
         image: ghcr.io/jadonharsh109/istio-microservice-deployment-offer:latest
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
         livenessProbe:
           tcpSocket:
             port: 8081
@@ -54,7 +54,6 @@ spec:
         #   periodSeconds: 10
         ports:
         - containerPort:  8081
-          name:  product-service-port
       restartPolicy: Always
 
 --- 
@@ -72,4 +71,4 @@ spec:
   ports:
     - protocol: TCP
       port: 8081
-      targetPort: product-service-port
+      targetPort: 8081

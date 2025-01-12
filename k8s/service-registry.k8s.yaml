@@ -23,13 +23,13 @@ spec:
       containers:
       - name:  service-registry-container
         image: ghcr.io/jadonharsh109/istio-microservice-deployment-registry:latest
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
         livenessProbe:
           tcpSocket:
             port: 8761
@@ -49,7 +49,6 @@ spec:
         #   periodSeconds: 10
         ports:
         - containerPort:  8761
-          name:  service-registry-port
       restartPolicy: Always
 
 ---
@@ -66,5 +65,5 @@ spec:
   ports:
     - protocol: TCP
       port: 8761
-      targetPort: service-registry-port
+      targetPort: 8761
   type: ClusterIP

@@ -34,5 +34,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: src/service-registry/
+          platforms: linux/amd64,linux/arm64
           push: true
+          cache-from: type=registry,ref=ghcr.io/jadonharsh109/istio-microservice-deployment-registry:cache
           tags: ghcr.io/jadonharsh109/istio-microservice-deployment-registry:latest

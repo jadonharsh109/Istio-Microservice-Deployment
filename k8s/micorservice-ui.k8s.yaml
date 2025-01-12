@@ -23,13 +23,13 @@ spec:
       containers:
       - name:  microservice-ui-container
         image: ghcr.io/jadonharsh109/istio-microservice-deployment-ui:latest
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 100m
-            memory: 100Mi
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        #   limits:
+        #     cpu: 100m
+        #     memory: 100Mi
         livenessProbe:
           tcpSocket:
             port: 80
@@ -49,7 +49,6 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort:  80
-          name:  microservice-ui-port
       restartPolicy: Always
 
 --- 
@@ -67,4 +66,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: microservice-ui-port
+      targetPort: 80
