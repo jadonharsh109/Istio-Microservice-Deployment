@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  product-service-deployment
+  namespace: default
+  labels:
+    app:  product-service
+spec:
+  selector:
+    matchLabels:
+      app: product-service
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  product-service
+    spec:
+      initContainers: 
+      - name: init-rabbitmq-service
+        image: busybox 
+        command: ['sh','-c', 'until nslookup rabbitmq-service.default.svc.cluster.local; do echo waiting for rabbitmq service to come up; sleep 2; done;'] 
+
+      containers:
+      - name:  product-service-container
+        image: ghcr.io/jadonharsh109/istio-microservice-deployment-offer:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        livenessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /actuator/health
+        #     port: 8081
+        #   initialDelaySeconds: 30
+        #   timeoutSeconds: 3
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        #   periodSeconds: 10
+        ports:
+        - containerPort:  8081
+          name:  product-service-port
+      restartPolicy: Always
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+  namespace: default
+  labels:
+    app: product-service
+spec:
+  selector:
+    app: product-service
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: product-service-port

@@ -5,8 +5,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Product } from './model/product.model';
 import { Router } from '@angular/router';
 
-const productsUrl = 'http://localhost:8000/product-service/products';
-const offerUrl = 'http://localhost:8000/offer-service/offer';
+const productsUrl = 'http://api-gateway.default.svc.cluster.local:8000/product-service/products';
+const offerUrl = 'http://api-gateway.default.svc.cluster.local:8000/offer-service/offer';
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'

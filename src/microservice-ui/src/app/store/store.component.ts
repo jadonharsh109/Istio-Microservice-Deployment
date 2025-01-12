@@ -25,7 +25,7 @@ export class StoreComponent implements OnInit {
 
     private products:any;
 
-    private productsUrl = 'http://localhost:8000/product-service/products';
+    private productsUrl = 'http://api-gateway.default.svc.cluster.local:8000/product-service/products';
 
     constructor(private repository: ProductRepository,
                 private http: HttpClient,
