@@ -32,16 +32,16 @@ spec:
         #     memory: 100Mi
         livenessProbe:
           tcpSocket:
-            port: 80
-          initialDelaySeconds: 5
+            port: 4200
+          initialDelaySeconds: 30
           timeoutSeconds: 5
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /store
-            port: 80
+            path: /
+            port: 4200
           initialDelaySeconds: 30
           timeoutSeconds: 3
           successThreshold: 1
