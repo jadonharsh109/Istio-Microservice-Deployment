@@ -1,0 +1,42 @@
+services:
+  service-registry:
+    build:
+      context: ./service-registry
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - service-registry
+
+  product-service:
+    build:
+      context: ./product-service
+    ports:
+      - "8081:8081"
+      - "8180:8180"
+    depends_on:
+      - service-registry
+
+  offer-service:
+    build:
+      context: ./offer-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - service-registry
+
+  microservice-ui:
+    build:
+      context: ./microservice-ui
+    ports:
+      - "3000:80"
+
+  rabbitmq:
+    image: "rabbitmq:alpine"
+    ports:
+      - "5672:5672" # Remove port 15672 as there is no management UI
