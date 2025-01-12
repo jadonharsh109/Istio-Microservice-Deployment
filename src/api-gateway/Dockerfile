@@ -24,7 +24,7 @@ ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Xss256k -XX:M
 
 EXPOSE 8000
 
-# Using a minimal health check to save space
+# Using a minimal health check to save spaces
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD wget -q --spider http://localhost:8000/actuator/health || exit 1
 
