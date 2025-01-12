@@ -33,6 +33,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: src/api-gateway/
           push: true
           tags: ghcr.io/jadonharsh109/istio-microservice-deployment-api:latest
