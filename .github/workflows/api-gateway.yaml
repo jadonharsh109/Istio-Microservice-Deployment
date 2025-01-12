@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "src/api-gateway/**"
+      - ".github/workflows/api-gateway.yaml"
 
 jobs:
   build:
@@ -34,4 +35,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository.toLowerCase() }}-api:latest
+          tags: ghcr.io/jadonharsh109/istio-microservice-deployment-api:latest

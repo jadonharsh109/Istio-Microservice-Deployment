@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'src/product-service/**'
+      - '.github/workflows/product-service.yaml'
 
 jobs:
   build:
@@ -34,4 +35,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}-product:latest
+          tags: ghcr.io/jadonharsh109/istio-microservice-deployment-product:latest
