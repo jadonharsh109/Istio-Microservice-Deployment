@@ -35,4 +35,4 @@ jobs:
         with:
           context: src/microservice-ui/
           push: true
-          tags: ghcr.io/jadonharsh109/istio-microservice-deployment-offer:latest
+          tags: ghcr.io/jadonharsh109/istio-microservice-deployment-ui:latest
