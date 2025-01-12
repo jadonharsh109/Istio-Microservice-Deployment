@@ -48,7 +48,7 @@ spec:
           failureThreshold: 3
           periodSeconds: 10
         ports:
-        - containerPort:  80
+        - containerPort:  4200
       restartPolicy: Always
 
 --- 
@@ -66,4 +66,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 4200

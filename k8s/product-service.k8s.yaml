@@ -27,7 +27,7 @@ spec:
 
       containers:
       - name:  product-service-container
-        image: ghcr.io/jadonharsh109/istio-microservice-deployment-offer:latest
+        image: ghcr.io/jadonharsh109/istio-microservice-deployment-product:latest
         # resources:
         #   requests:
         #     cpu: 100m
