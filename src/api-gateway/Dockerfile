@@ -26,6 +26,6 @@ EXPOSE 8000
 
 # Using a minimal health check to save spaces
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD wget -q --spider http://localhost:8000/actuator/health || exit 1
+  CMD wget -q --spider https://localhost:8000/actuator/health || exit 1
 
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

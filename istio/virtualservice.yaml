@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-service
+  namespace: default
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - my-gateway 
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: api-gateway.default.svc.cluster.local
+        port:
+          number: 8000
+    corsPolicy:
+      allowOrigins:
+      - regex: "https?://.*"  # Allow all origins matching HTTP/HTTPS
+      allowMethods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      allowHeaders:
+      - Authorization
+      - Content-Type
+      maxAge: "24h"
